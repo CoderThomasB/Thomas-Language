@@ -7,6 +7,7 @@ import TL.Token;
 import TL.TokenType;
 
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 public class CodeBlock {
 	public LinkedList<Statement> Commands = new LinkedList<>();
@@ -17,8 +18,6 @@ public class CodeBlock {
 			ParesCommand(Tokens, Position, FindEndOfCommand(Tokens, Position));
 			
 			Position = EndingPosition + 1;
-			int b = 1;
-			int a = (b = 1);
 		}
 	}
 	
@@ -43,7 +42,7 @@ public class CodeBlock {
 //									Tokens.get(StartingPosition).LineNumber,
 //									Tokens.get(StartingPosition).StringPosition
 //							));
-			System.err.println(E);
+			System.err.println(E.toString());
 			System.exit(1);
 		}
 	}
@@ -63,6 +62,12 @@ public class CodeBlock {
 	
 	@Override
 	public String toString() {
-		return Commands.toString();
+		String string = "Code:\n";
+		
+		for(Statement TheCommand : Commands){
+			string += TheCommand.toString() + "\n";
+		}
+		
+		return string;
 	}
 }

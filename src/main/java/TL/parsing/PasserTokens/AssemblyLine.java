@@ -23,6 +23,6 @@ public class AssemblyLine extends Command {
 	
 	@Override
 	public String toString() {
-		return String.format("Assembly:'%s'", AssemblyCode);
+		return String.format("Assembly:\"%s\"", AssemblyCode);
 	}
 }

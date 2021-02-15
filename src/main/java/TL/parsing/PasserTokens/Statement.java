@@ -1,7 +1,6 @@
 package TL.parsing.PasserTokens;
 
 import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
-import TL.parsing.PasserTokens.Exceptions.ParsingException;
 import TL.parsing.PasserTokens.Maths.MathsToken;
 import TL.Token;
 
@@ -18,7 +17,7 @@ public abstract class Statement {
 		}
 		
 		try {
-			return FunctionToken.ParsInnerBlock(Tokens, StartingPosition, EndingPosition);
+			return FunctionCallToken.ParsInnerBlock(Tokens, StartingPosition, EndingPosition);
 		} catch (MutelyParsingException E) {
 			TheMutelyParsingException.add(E);
 		}

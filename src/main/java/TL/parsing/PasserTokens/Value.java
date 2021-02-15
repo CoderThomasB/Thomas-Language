@@ -21,7 +21,7 @@ public abstract class Value extends Statement {
 		MutelyParsingException TheMutelyParsingException = new MutelyParsingException();
 		
 		if (EndingPosition - StartingPosition != 1) {
-			TheMutelyParsingException.add(new ParsingException("Value is more than one Token in length.", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber));
+			TheMutelyParsingException.add(new ParsingException("Value is not one Token in length.", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber));
 			throw TheMutelyParsingException;
 		}
 		if (Tokens.get(StartingPosition).Type == TokenType.String) {

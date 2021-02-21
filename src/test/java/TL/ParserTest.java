@@ -1,6 +1,5 @@
 package TL;
 
-import TL.parsing.Parser;
 import TL.parsing.PasserTokens.CodeBlock;
 import org.junit.Test;
 
@@ -24,7 +23,8 @@ public class ParserTest {
 						#asm\tMOV [a], AH
 						"""
 		);
-		CodeBlock Parsed = Parser.Pars(Tokens);
+		CodeBlock Parsed = new CodeBlock();
+		Parsed.ParsInnerBlock(Tokens, 0);
 		System.out.println(Tokens);
 		System.out.println(Parsed);
 	}
@@ -36,7 +36,8 @@ public class ParserTest {
 			a = 1 + 2
 			"""
 		);
-		CodeBlock Parsed = Parser.Pars(Tokens);
+		CodeBlock Parsed = new CodeBlock();
+		Parsed.ParsInnerBlock(Tokens, 0);
 		System.out.println(Tokens);
 		System.out.println(Parsed);
 	}

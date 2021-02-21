@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public abstract class Value extends Statement {
 	
-	private final String Body;
+	private String Body;
 	
 	public Value(String Body) throws ParsingException {
 		ValidateValue(Body);

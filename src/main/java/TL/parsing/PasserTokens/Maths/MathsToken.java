@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public abstract class MathsToken extends Statement {
 	public Object Input1;
 	public Object Input2;
-	public Class AllMathsTokens[] = {MinusToken.class, PlusToken.class};
+	public Class[] AllMathsTokens = {MinusToken.class, PlusToken.class};
 	
 	public static TokenType getSymbol() {
 		throw new RuntimeException();

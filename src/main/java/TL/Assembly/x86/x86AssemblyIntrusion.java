@@ -1,6 +1,8 @@
 package TL.Assembly.x86;
 
-public class x86AssemblyIntrusion {
+import TL.Assembly.AssemblyIntrusion;
+
+public class x86AssemblyIntrusion extends AssemblyIntrusion {
 
     public String toString(String Thing) {
         return "\t%s".formatted(Thing);

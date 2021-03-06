@@ -9,7 +9,7 @@ public class AssemblyBlock {
 	public String toString() {
 		String s = "";
 		for (AssemblyIntrusion AI : Intrusions) {
-			s += AI.toString();
+			s += "%s\n".formatted(AI.toString());
 		}
 		return s;
 	}

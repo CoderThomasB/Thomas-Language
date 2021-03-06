@@ -13,9 +13,10 @@ import java.util.stream.Collectors;
 public abstract class NasmAPI {
 	public static File ParesAssembly(AssemblyBlock TheAssemblyBlock) throws IOException, InterruptedException {
 		File NasmInput = File.createTempFile( "nasmInput", ".txt" );
-		File NasmOutput = File.createTempFile( "NasmOutput", "" );
+		File NasmOutput = File.createTempFile( "NasmOutput", ".out");
 		
-		NasmInput.setWritable( true );
+		NasmOutput.setExecutable(true);
+		
 		Files.writeString( NasmInput.toPath(), TheAssemblyBlock.toString(), StandardCharsets.US_ASCII );
 		
 		System.out.println( NasmInput.getAbsolutePath() );
@@ -26,13 +27,13 @@ public abstract class NasmAPI {
 		
 		System.out.println(
 				new BufferedReader(
-						new InputStreamReader( NasmProcess.getInputStream( ), StandardCharsets.UTF_8 ) )
+						new InputStreamReader( NasmProcess.getInputStream( ), StandardCharsets.US_ASCII ) )
 						.lines( )
 						.collect( Collectors.joining( "\n" ) )
 		);
 		System.err.println(
 				new BufferedReader(
-						new InputStreamReader( NasmProcess.getErrorStream( ), StandardCharsets.UTF_8 ) )
+						new InputStreamReader( NasmProcess.getErrorStream( ), StandardCharsets.US_ASCII ) )
 						.lines( )
 						.collect( Collectors.joining( "\n" ) )
 		);

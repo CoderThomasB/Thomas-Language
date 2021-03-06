@@ -11,8 +11,8 @@ public class NasmAPITest {
 		AssemblyBlock TheAssemblyBlock = new AssemblyBlock( );
 		TheAssemblyBlock.Intrusions.add(
 				new x86MoveIntrusion(
-						new x86RegOrMem( "AH" ),
-						new x86RegOrMem( 10 ) ) );
+						new x86RegMemOrConst( "AH" ),
+						new x86RegMemOrConst( (long)10 ) ) );
 		
 		NasmAPI.ParesAssembly( TheAssemblyBlock );
 	}

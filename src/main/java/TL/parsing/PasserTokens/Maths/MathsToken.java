@@ -1,5 +1,6 @@
 package TL.parsing.PasserTokens.Maths;
 
+import TL.Assembly.x86.x86ValueOutput;
 import TL.ErrorHandling;
 import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;
@@ -10,10 +11,9 @@ import TL.TokenType;
 import java.text.MessageFormat;
 import java.util.LinkedList;
 
-public abstract class MathsToken extends Statement {
+public abstract class MathsToken extends Statement  implements x86ValueOutput {
 	public Object Input1;
 	public Object Input2;
-	public Class[] AllMathsTokens = {MinusToken.class, PlusToken.class};
 	
 	public static TokenType getSymbol() {
 		throw new RuntimeException();

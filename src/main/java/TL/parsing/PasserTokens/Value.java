@@ -1,5 +1,7 @@
 package TL.parsing.PasserTokens;
 
+import TL.Assembly.x86.x86RegMemOrConst;
+import TL.Assembly.x86.x86ValueOutput;
 import TL.ErrorHandling;
 import TL.Token;
 import TL.TokenType;
@@ -8,14 +10,16 @@ import TL.parsing.PasserTokens.Exceptions.ParsingException;
 
 import java.util.LinkedList;
 
-public abstract class Value extends Statement {
+public abstract class Value extends Statement implements x86ValueOutput {
 	
-	private String Body;
+	protected String Body;
 	
 	public Value(String Body) throws ParsingException {
 		ValidateValue(Body);
 		this.Body = Body;
 	}
+	
+	public abstract x86RegMemOrConst Get_x86RegOrMem();
 	
 	public static Statement ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws MutelyParsingException {
 		MutelyParsingException TheMutelyParsingException = new MutelyParsingException();

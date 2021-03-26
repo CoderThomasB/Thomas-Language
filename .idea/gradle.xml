@@ -12,6 +12,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/JIT-Interpreter" />
+            <option value="$PROJECT_DIR$/LLVM-Interface" />
+            <option value="$PROJECT_DIR$/Main" />
+            <option value="$PROJECT_DIR$/x86" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,2 +1,6 @@
 rootProject.name = 'Thomas\'s Language'
+include 'x86'
+include 'Main'
+include 'JIT-Interpreter'
+include 'LLVM-Interface'
 

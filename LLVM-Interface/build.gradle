@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13'
+
+    compile 'org.bytedeco:llvm:11.1.0-1.5.5'
+    compile 'org.bytedeco:llvm:11.1.0-1.5.5:linux-x86_64'
+
+//    compile 'org.llvm4j:optional:0.1.0'
+
+    compile project(":Main")
+}

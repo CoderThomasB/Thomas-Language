@@ -22,18 +22,17 @@ public class VariableToken extends PasserTokenBasic {
 	
 	public static VariableToken ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws ParsingException {
 		if (EndingPosition - StartingPosition != 1) {
-			throw new ParsingException("Variable is more than one Token in length.", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber);
+			throw new ParsingException("Variable is more than one Token in length.", Tokens, StartingPosition, EndingPosition);
 		}
 		
 		if (Tokens.get(StartingPosition).Type != TokenType.Text) {
-			throw new ParsingException("Variable is not a valid name", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber);
+			throw new ParsingException("Variable is not a valid name", Tokens, StartingPosition, EndingPosition);
 		}
-		VariableToken Token = new VariableToken(
+		
+		return new VariableToken(
 				Tokens,
 				StartingPosition,
 				EndingPosition,
 				Tokens.get(StartingPosition).Body);
-		
-		return Token;
 	}
 }

@@ -51,7 +51,7 @@ public abstract class MathsToken {
 				return Position;
 			}
 		}
-		throw new ParsingException("Maths statement does not contain " + Symbol + " symbol.", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber);
+		throw new ParsingException("Maths statement does not contain " + Symbol + " symbol.", Tokens, StartingPosition, EndingPosition);
 	}
 	
 	public static String toString(char Symbol, Object Input1, Object Input2){

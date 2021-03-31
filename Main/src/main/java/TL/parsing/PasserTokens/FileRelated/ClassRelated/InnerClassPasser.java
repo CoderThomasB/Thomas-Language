@@ -1,26 +1,20 @@
-package TL.parsing.PasserTokens.FileRelated;
+package TL.parsing.PasserTokens.FileRelated.ClassRelated;
 
 import TL.Token;
 import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;
-import TL.parsing.PasserTokens.FileRelated.ClassRelated.ClassStatement;
+import TL.parsing.PasserTokens.FileRelated.ImportStatement;
 import TL.parsing.PasserTokens.PasserTokenBasic;
 
 import java.util.LinkedList;
 
-abstract public class FileItem {
+public abstract class InnerClassPasser {
 	public static PasserTokenBasic ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition) throws MutelyParsingException {
 		MutelyParsingException TheMutelyParsingException = new MutelyParsingException();
 		
 		try {
-			return ImportStatement.ParsInnerBlock(Tokens, StartingPosition);
-		} catch (ParsingException E) {
-			TheMutelyParsingException.add(E);
-		}
-		
-		try {
-			return ClassStatement.ParsInnerBlock(Tokens, StartingPosition);
-		} catch (ParsingException E) {
+			return PropertyDecoration.ParsInnerBlock(Tokens, StartingPosition);
+		} catch (MutelyParsingException E) {
 			TheMutelyParsingException.add(E);
 		}
 		

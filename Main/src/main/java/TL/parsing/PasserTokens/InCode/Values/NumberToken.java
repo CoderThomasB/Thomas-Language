@@ -20,7 +20,7 @@ public class NumberToken extends PasserTokenBasic {
 	
 	public static NumberToken ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws ParsingException {
 		if (EndingPosition - StartingPosition != 1) {
-			throw new ParsingException("Value is more than one Token in length.", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber);
+			throw new ParsingException("Value is more than one Token in length.", Tokens, StartingPosition, EndingPosition);
 		}
 		
 		try {
@@ -33,7 +33,7 @@ public class NumberToken extends PasserTokenBasic {
 					Tokens.get(StartingPosition).Body
 			);
 		} catch (Exception E) {
-			throw new ParsingException("Value is Not a Number", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber);
+			throw new ParsingException("Value is Not a Number", Tokens, StartingPosition, EndingPosition);
 		}
 	}
 

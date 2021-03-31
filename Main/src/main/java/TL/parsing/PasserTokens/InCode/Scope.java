@@ -27,10 +27,7 @@ public class Scope {
 	
 	public void ParsInnerBlockWithBracket(LinkedList<Token> Tokens, int StartingPosition) throws ParsingException {
 		if(Tokens.get(StartingPosition).Type != TokenType.OpeningCurlyBracket){
-			throw new ParsingException("Scope dose not start with OpeningCurlyBracket '{'.",
-					ErrorHandling.CombineTokenBodies(Tokens,  StartingPosition, Tokens.size()),
-					Tokens.get(StartingPosition).LineNumber
-			);
+			throw new ParsingException("Scope dose not start with OpeningCurlyBracket '{'.", Tokens, StartingPosition, StartingPosition + 1);
 		}
 		ParsInnerBlockWithoutBracket(
 				Tokens,
@@ -42,14 +39,12 @@ public class Scope {
 	public void ParsInnerBlockWithBracket(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws ParsingException {
 		if(Tokens.get(StartingPosition).Type != TokenType.OpeningCurlyBracket){
 			throw new ParsingException("Scope dose not start with OpeningCurlyBracket '{'.",
-					ErrorHandling.CombineTokenBodies(Tokens,  StartingPosition, EndingPosition),
-					Tokens.get(StartingPosition).LineNumber
+					Tokens, StartingPosition, StartingPosition + 1
 			);
 		}
 		if(Tokens.get(EndingPosition - 1).Type != TokenType.ClosingCurlyBracket){
 			throw new ParsingException("Scope dose not start with ClosingBracket '}'.",
-					ErrorHandling.CombineTokenBodies(Tokens,  StartingPosition, EndingPosition),
-					Tokens.get(StartingPosition).LineNumber
+					Tokens, StartingPosition, EndingPosition
 			);
 		}
 		ParsInnerBlockWithoutBracket(
@@ -72,15 +67,6 @@ public class Scope {
 		try {
 			this.Commands.add(Command.ParsInnerBlock(Tokens, StartingPosition, EndingPosition));
 		} catch (MutelyParsingException E) {
-			// ToDo update this to use the new MutelyParsingException!
-//			throw new RuntimeException(
-//					"Unknown command '%s' on Line %d Charter %d".
-//							formatted(
-//									ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition),
-//									Tokens.get(StartingPosition).LineNumber,
-//									Tokens.get(StartingPosition).StringPosition
-//							));
-//			System.err.println(E.toString());
 			E.printStackTrace();
 			System.exit(1);
 		}
@@ -97,8 +83,7 @@ public class Scope {
 		}
 		
 		throw new ParsingException("Can not find end of scope.",
-				ErrorHandling.CombineTokenBodies(Tokens,  StartingPosition, Tokens.size()),
-				Tokens.get(StartingPosition).LineNumber
+				Tokens, StartingPosition, EndingPosition
 		);
 	}
 	

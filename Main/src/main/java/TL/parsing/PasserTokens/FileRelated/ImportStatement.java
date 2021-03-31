@@ -3,6 +3,7 @@ package TL.parsing.PasserTokens.FileRelated;
 import TL.ErrorHandling;
 import TL.Token;
 import TL.TokenType;
+import TL.parsing.PasserHelper;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;
 import TL.parsing.PasserTokens.PasserTokenBasic;
 
@@ -17,36 +18,22 @@ public class ImportStatement extends PasserTokenBasic {
 	}
 	
 	public static ImportStatement ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition) throws ParsingException {
-		int EndingPosition = FindEndOfCommand(Tokens, StartingPosition);
+		int EndingPosition = PasserHelper.FindByTypeOrEndOfFile(Tokens, StartingPosition, TokenType.NextCommand);
 		
-		if (EndingPosition - StartingPosition <= 1) {
-			throw new ParsingException("Line is too small to be an import", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber);
+		if (EndingPosition - StartingPosition != 2) {
+			throw new ParsingException("Line is not the right size to be an import", Tokens, StartingPosition, EndingPosition);
 		}
 		
-		if (Tokens.get(StartingPosition).Body == "import") {
-			throw new ParsingException("Line is dose not start with import", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber);
+		if (!Tokens.get(StartingPosition).Body.equals("import")) {
+			throw new ParsingException("Line is dose not start with import (%s)".formatted(Tokens.get(StartingPosition).Body), Tokens, StartingPosition, EndingPosition);
 		}
 		
-		ImportStatement NewImportStatement = new ImportStatement(
+		return new ImportStatement(
 				Tokens,
 				StartingPosition,
 				EndingPosition,
 				Tokens.get(StartingPosition + 1).Body
 		);
-		return NewImportStatement;
-	}
-	
-	public static int FindEndOfCommand(LinkedList<Token> Tokens, int StartingPosition) {
-		int EndingPosition = StartingPosition;
-		
-		while (EndingPosition < Tokens.size()) {
-			if (Tokens.get(EndingPosition).Type == TokenType.NextCommand) {
-				break;
-			}
-			EndingPosition++;
-		}
-		
-		return EndingPosition;
 	}
 	
 	@Override

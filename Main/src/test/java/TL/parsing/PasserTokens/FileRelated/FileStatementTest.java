@@ -40,7 +40,11 @@ public class FileStatementTest {
 						import TL.App.Application
 						import TL.App.GUI.Window
 						
-						class MyApp extends Application{
+						abstract class MyApp extends Application, SomeOtherClass, {
+							public LikedList<Window> Windows;
+						}
+						
+						MyApp eXtEnDs Application, SomeOtherClass cLaSs ABstRAct {
 							public LikedList<Window> Windows;
 						}
 						"""

@@ -21,18 +21,18 @@ public class FunctionCallToken extends PasserTokenBasic {
 	
 	public static PasserTokenBasic ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws MutelyParsingException {
 		if (EndingPosition - StartingPosition < 3) {
-			throw new MutelyParsingException(new ParsingException("function is smaller than three tokens", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber));
+			throw new MutelyParsingException(new ParsingException("function is smaller than three tokens", Tokens, StartingPosition, EndingPosition));
 		}
 		if (Tokens.get(StartingPosition).Type != TokenType.Text) {
-			throw new MutelyParsingException(new ParsingException("function dose not have a valid name", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber));
+			throw new MutelyParsingException(new ParsingException("function dose not have a valid name", Tokens, StartingPosition, EndingPosition));
 		}
 		if (Tokens.get(StartingPosition + 1).Type != TokenType.OpeningBracket) {
-			throw new MutelyParsingException(new ParsingException("function dose not have a valid opening bracket", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber));
+			throw new MutelyParsingException(new ParsingException("function dose not have a valid opening bracket", Tokens, StartingPosition, EndingPosition));
 		}
 		if (Tokens.get(EndingPosition - 1).Type != TokenType.ClosingBracket) {
-			throw new MutelyParsingException(new ParsingException("function dose not have a valid closing bracket", ErrorHandling.CombineTokenBodies(Tokens, StartingPosition, EndingPosition), Tokens.get(StartingPosition).LineNumber));
+			throw new MutelyParsingException(new ParsingException("function dose not have a valid closing bracket", Tokens, StartingPosition, EndingPosition));
 		}
-		FunctionCallToken Token = new FunctionCallToken(
+		return new FunctionCallToken(
 				Tokens,
 				StartingPosition,
 				EndingPosition,
@@ -40,7 +40,6 @@ public class FunctionCallToken extends PasserTokenBasic {
 				Tokens.get(StartingPosition).Body,
 				NoBracketsList.ParsInnerList(Tokens, StartingPosition + 2, EndingPosition - 1)
 		);
-		return Token;
 	}
 	
 	@Override

@@ -19,11 +19,6 @@ public class Token {
 		this.StringPosition = StringPosition;
 		this.LineNumber = LineNumber;
 	}
-
-//	@Override
-//	public String toString() {
-//		return MessageFormat.format("''{0}''", Body);
-//	}
 	
 	@Override
 	public String toString() {

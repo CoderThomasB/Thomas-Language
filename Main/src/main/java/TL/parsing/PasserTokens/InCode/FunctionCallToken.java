@@ -43,12 +43,12 @@ public class FunctionCallToken extends PasserTokenBasic {
 	
 	@Override
 	public String toString() {
-		String StringInputs = "";
+		StringBuilder StringInputs = new StringBuilder();
 		
 		for (Object Input : Inputs) {
-			StringInputs += Input.toString() + ", ";
+			StringInputs.append(Input.toString()).append(", ");
 		}
 		
-		return "%s(%s)".formatted(FunctionName, StringInputs);
+		return "%s(%s)".formatted(FunctionName, StringInputs.toString());
 	}
 }

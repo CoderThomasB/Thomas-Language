@@ -36,9 +36,8 @@ public class MinusToken extends PasserTokenBasic {
 	
 	public static MinusToken ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws MutelyParsingException {
 		try {
-			int PlusPosition = 0;
-			PlusPosition = FindPositionOfASymbol(Tokens, StartingPosition, EndingPosition, getSymbol());
-			MinusToken TheToken = new MinusToken(
+			int PlusPosition = FindPositionOfASymbol(Tokens, StartingPosition, EndingPosition, getSymbol());
+			return new MinusToken(
 					Tokens,
 					StartingPosition,
 					EndingPosition,
@@ -46,7 +45,6 @@ public class MinusToken extends PasserTokenBasic {
 					Statement.ParsInnerBlock(Tokens, PlusPosition + 1, EndingPosition)
 			
 			);
-			return TheToken;
 		} catch (ParsingException e) {
 			throw new MutelyParsingException(e);
 		}
@@ -56,9 +54,5 @@ public class MinusToken extends PasserTokenBasic {
 	public String toString() {
 		return MathsToken.toString('-', Input1, Input2);
 	}
-
-//	@Override
-//	public x86RegMemOrConst GenerateAssemblyCode(AssemblyBlock TheAssemblyBlock, x86RegManger RegManger) {
-//		throw new RuntimeException();
-//	}
+	
 }

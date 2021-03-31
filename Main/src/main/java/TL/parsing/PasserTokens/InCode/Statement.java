@@ -9,9 +9,6 @@ import TL.parsing.PasserTokens.PasserTokenBasic;
 import java.util.LinkedList;
 
 public abstract class Statement {
-//	public LinkedList<Token> TokensReference;
-//	public int TokenStartingPosition;
-//	public int TokenEndingPosition;
 	
 	public static PasserTokenBasic ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws MutelyParsingException {
 		MutelyParsingException TheMutelyParsingException = new MutelyParsingException();
@@ -33,14 +30,6 @@ public abstract class Statement {
 		} catch (MutelyParsingException E) {
 			TheMutelyParsingException.add(E);
 		}
-
-//		try {
-//			return VariableAssignment.ParsInnerBlock(Tokens, StartingPosition, EndingPosition);
-//		} catch (MutelyParsingException E) {
-//			TheMutelyParsingException.add(E);
-//		} catch (ParsingException e) {
-//			TheMutelyParsingException.add(e);
-//		}
 		
 		throw TheMutelyParsingException;
 	}

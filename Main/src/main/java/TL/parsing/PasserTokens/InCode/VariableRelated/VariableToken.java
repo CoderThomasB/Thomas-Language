@@ -1,8 +1,5 @@
 package TL.parsing.PasserTokens.InCode.VariableRelated;
 
-//import x86.x86RegManger;
-//import x86.x86RegMemOrConst;
-
 import TL.Token;
 import TL.TokenType;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;

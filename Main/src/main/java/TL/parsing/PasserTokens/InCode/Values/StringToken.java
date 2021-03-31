@@ -1,8 +1,5 @@
 package TL.parsing.PasserTokens.InCode.Values;
 
-//import x86.x86RegManger;
-//import x86.x86RegMemOrConst;
-
 import TL.Token;
 import TL.TokenType;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;
@@ -12,6 +9,7 @@ import java.util.LinkedList;
 
 public class StringToken extends PasserTokenBasic {
 	
+	@SuppressWarnings({"FieldCanBeLocal", "FieldMayBeFinal"})
 	private String Body;
 	
 	public StringToken(LinkedList<Token> Tokens, int TokenStartingPosition, int TokenEndingPosition, String Body) {
@@ -36,19 +34,5 @@ public class StringToken extends PasserTokenBasic {
 				Tokens.get(StartingPosition).Body
 		);
 	}
-
-//	@Override
-//	public x86RegMemOrConst Get_x86RegOrMem() {
-//		throw new RuntimeException();
-//	}
-
-//	@Override
-//	public void ValidateValue(String Body) {
-//		return;
-//	}
-
-//	@Override
-//	public x86RegMemOrConst GenerateAssemblyCode(AssemblyBlock TheAssemblyBlock, x86RegManger RegManger) {
-//		throw new RuntimeException();
-//	}
+	
 }

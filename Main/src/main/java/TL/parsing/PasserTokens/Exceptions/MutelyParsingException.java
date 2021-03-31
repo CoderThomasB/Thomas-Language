@@ -54,6 +54,7 @@ public class MutelyParsingException extends Exception {
 				SmallestCodeText = NewSmallestCodeText;
 				message = TheParsingException.getMessage();
 				Line = NewLineNumber;
+				//noinspection UnnecessaryContinue
 				continue;
 			}
 		}

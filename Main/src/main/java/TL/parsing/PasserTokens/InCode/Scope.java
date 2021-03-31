@@ -86,14 +86,14 @@ public class Scope {
 	
 	@Override
 	public String toString() {
-		String string = "{\n";
+		StringBuilder string = new StringBuilder("{\n");
 		
 		for (Object TheCommand : Commands) {
-			string += TheCommand.toString() + "\n";
+			string.append(TheCommand.toString()).append("\n");
 		}
 		
-		string += "}";
+		string.append("}");
 		
-		return string;
+		return string.toString();
 	}
 }

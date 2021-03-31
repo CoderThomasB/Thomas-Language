@@ -16,7 +16,9 @@ public abstract class NasmAPI {
 		File NasmInput = File.createTempFile("nasmInput", ".txt");
 		File NasmOutput = File.createTempFile("NasmOutput", ".out");
 		
-		NasmOutput.setExecutable(true);
+		if(!NasmOutput.setExecutable(true)){
+			throw new RuntimeException("setExecutable in NasmAPI.ParesAssembly failed!");
+		}
 		
 		Files.writeString(NasmInput.toPath(), TheAssemblyBlock.toString(), StandardCharsets.US_ASCII);
 		

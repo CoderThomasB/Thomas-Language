@@ -1,7 +1,5 @@
 package TL.parsing.PasserTokens.Maths;
 
-//import x86.x86Generatable;
-
 import TL.Token;
 import TL.TokenType;
 import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
@@ -16,15 +14,6 @@ public abstract class MathsToken {
 	public static TokenType getSymbol() {
 		throw new RuntimeException();
 	}
-
-//		public static MathsToken ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition, MathsToken TheMathsToken) throws ParsingException {
-//		int PlusPosition = FindPositionOfASymbol(Tokens, StartingPosition, EndingPosition, TheMathsToken.getSymbol());
-//
-//		Output.Input1 = Statement.ParsInnerBlock(Tokens, StartingPosition, PlusPosition);
-//		Output.Input2 = Statement.ParsInnerBlock(Tokens, PlusPosition + 1, EndingPosition);
-//
-//		return Output;
-//	}
 	
 	public static PasserTokenBasic ParsInnerBlock(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws MutelyParsingException {
 		MutelyParsingException MyMutelyParsingException = new MutelyParsingException();

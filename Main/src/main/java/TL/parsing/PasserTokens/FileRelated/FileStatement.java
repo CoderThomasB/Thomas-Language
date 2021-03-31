@@ -31,13 +31,13 @@ public class FileStatement extends PasserTokenBasic {
 	
 	@Override
 	public String toString() {
-		String string = "File:\n";
+		StringBuilder string = new StringBuilder("File:\n");
 		
 		for (PasserTokenBasic TheFileItem : InnerFileItems) {
-			string += TheFileItem.toString() + "\n";
+			string.append(TheFileItem.toString()).append("\n");
 		}
 		
-		return string;
+		return string.toString();
 	}
 }
 

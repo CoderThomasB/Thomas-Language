@@ -27,7 +27,7 @@ public class VariableAssignment extends PasserTokenBasic {
 			throw new MutelyParsingException(new ParsingException("variable token is not text", Tokens, StartingPosition, EndingPosition));
 		}
 		if (Tokens.get(StartingPosition + 1).Type != TokenType.Equals) {
-			throw new MutelyParsingException(new ParsingException("variable assignment dose contain a Equals simble", Tokens, StartingPosition, EndingPosition));
+			throw new MutelyParsingException(new ParsingException("variable assignment dose contain a equals sign", Tokens, StartingPosition, EndingPosition));
 		}
 		return new VariableAssignment(Tokens, StartingPosition, EndingPosition, Tokens.get(StartingPosition).Body, Statement.ParsInnerBlock(Tokens, StartingPosition + 2, EndingPosition));
 	}

@@ -60,6 +60,7 @@ ExtendsListLoop:
 				while (Tokens.get(NowPosition).Type == TokenType.ListSeparator) {
 					NowPosition++;
 					if (Tokens.get(NowPosition).Type != TokenType.Text) {
+						//noinspection UnnecessaryLabelOnBreakStatement
 						break ExtendsListLoop;
 					}
 					this.ExistedClassNames.add(Tokens.get(NowPosition).Body);
@@ -83,25 +84,25 @@ ExtendsListLoop:
 	
 	@Override
 	public String toString() {
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		
 		if (IsClassAbstract) {
-			s += "abstract ";
+			s.append("abstract ");
 		}
 		
-		s += MessageFormat.format("class {0} ", Name);
+		s.append(MessageFormat.format("class {0} ", Name));
 		
 		if (this.ExistedClassNames.size() > 0) {
-			s += "extends ";
+			s.append("extends ");
 		}
 		
 		for (String ExistedClassName :
 				this.ExistedClassNames) {
-			s += ExistedClassName + ", ";
+			s.append(ExistedClassName).append(", ");
 		}
 		
-		s += "{?}";
+		s.append("{?}");
 		
-		return s;
+		return s.toString();
 	}
 }

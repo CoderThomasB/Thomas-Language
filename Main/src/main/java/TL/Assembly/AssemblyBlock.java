@@ -7,10 +7,10 @@ public class AssemblyBlock {
 	
 	@Override
 	public String toString() {
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		for (AssemblyIntrusion AI : Intrusions) {
-			s += "%s\n".formatted(AI.toString());
+			s.append("%s\n".formatted(AI.toString()));
 		}
-		return s;
+		return s.toString();
 	}
 }

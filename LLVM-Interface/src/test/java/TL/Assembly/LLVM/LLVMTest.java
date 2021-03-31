@@ -10,6 +10,8 @@ import static org.bytedeco.llvm.global.LLVM.*;
 
 public class LLVMTest {
 	//	@Test
+	
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void AnLLVMTest() {
 		BytePointer error = new BytePointer((Pointer) null); // Used to retrieve messages from functions
 		LLVMLinkInMCJIT();
@@ -24,30 +26,30 @@ public class LLVMTest {
 		LLVMValueRef n = LLVMGetParam(fac, 0);
 		
 		LLVMBasicBlockRef entry = LLVMAppendBasicBlock(fac, "entry");
-		LLVMBasicBlockRef iftrue = LLVMAppendBasicBlock(fac, "iftrue");
-		LLVMBasicBlockRef iffalse = LLVMAppendBasicBlock(fac, "iffalse");
+		LLVMBasicBlockRef IfTrue = LLVMAppendBasicBlock(fac, "iftrue");
+		LLVMBasicBlockRef IfFalse = LLVMAppendBasicBlock(fac, "iffalse");
 		LLVMBasicBlockRef end = LLVMAppendBasicBlock(fac, "end");
 		LLVMBuilderRef builder = LLVMCreateBuilder();
 		
 		LLVMPositionBuilderAtEnd(builder, entry);
 		LLVMValueRef If = LLVMBuildICmp(builder, LLVMIntEQ, n, LLVMConstInt(LLVMInt32Type(), 0, 0), "n == 0");
-		LLVMBuildCondBr(builder, If, iftrue, iffalse);
+		LLVMBuildCondBr(builder, If, IfTrue, IfFalse);
 		
-		LLVMPositionBuilderAtEnd(builder, iftrue);
-		LLVMValueRef res_iftrue = LLVMConstInt(LLVMInt32Type(), 1, 0);
+		LLVMPositionBuilderAtEnd(builder, IfTrue);
+		LLVMValueRef res_IfTrue = LLVMConstInt(LLVMInt32Type(), 1, 0);
 		LLVMBuildBr(builder, end);
 		
-		LLVMPositionBuilderAtEnd(builder, iffalse);
+		LLVMPositionBuilderAtEnd(builder, IfFalse);
 		LLVMValueRef n_minus = LLVMBuildSub(builder, n, LLVMConstInt(LLVMInt32Type(), 1, 0), "n - 1");
 		LLVMValueRef[] call_fac_args = {n_minus};
 		LLVMValueRef call_fac = LLVMBuildCall(builder, fac, new PointerPointer(call_fac_args), 1, "fac(n - 1)");
-		LLVMValueRef res_iffalse = LLVMBuildMul(builder, n, call_fac, "n * fac(n - 1)");
+		LLVMValueRef res_IfFalse = LLVMBuildMul(builder, n, call_fac, "n * fac(n - 1)");
 		LLVMBuildBr(builder, end);
 		
 		LLVMPositionBuilderAtEnd(builder, end);
 		LLVMValueRef res = LLVMBuildPhi(builder, LLVMInt32Type(), "result");
-		LLVMValueRef[] phi_vals = {res_iftrue, res_iffalse};
-		LLVMBasicBlockRef[] phi_blocks = {iftrue, iffalse};
+		LLVMValueRef[] phi_vals = {res_IfTrue, res_IfFalse};
+		LLVMBasicBlockRef[] phi_blocks = {IfTrue, IfFalse};
 		LLVMAddIncoming(res, new PointerPointer(phi_vals), new PointerPointer(phi_blocks), 2);
 		LLVMBuildRet(builder, res);
 		
@@ -86,7 +88,7 @@ public class LLVMTest {
 	@Test
 	public void LLVMTest2() {
 		LLVMContextRef MyContext = LLVMContextCreate();
-		LLVMModuleRef MyModule = LLVMModuleCreateWithNameInContext("Unname", MyContext);
+		LLVMModuleRef MyModule = LLVMModuleCreateWithNameInContext("Unnamed", MyContext);
 		LLVMBuilderRef MyBuilder = LLVMCreateBuilderInContext(MyContext);
 		
 		LLVMTypeRef FunctionType = LLVMFunctionType(LLVMInt32Type(), LLVMVoidType(), 0, 0);

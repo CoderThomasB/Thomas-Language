@@ -25,6 +25,7 @@ MainLoop:
 					NextIndex++;
 				}
 				Position = NextIndex;
+				//noinspection UnnecessaryLabelOnContinueStatement
 				continue MainLoop;
 			}
 			
@@ -50,23 +51,6 @@ MainLoop:
 	private static Token GetNextToken(String input, int Position, int LineNumber) throws TokenizerException {
 		
 		int NextIndex = Position + 1;
-
-//		System.out.println();
-
-//		System.out.println(input.substring(Position));
-
-//		if(input.startsWith("//", Position)){
-//			while (NextIndex < input.length()) {
-//				if(input.charAt(NextIndex) == '\n'){
-//					return new Token(input.substring(Position, NextIndex), TokenType.Comment, Position, LineNumber);
-//				}
-//				NextIndex++;
-//			}
-//			return new Token(input.substring(Position, NextIndex), TokenType.Comment, Position, LineNumber);
-//
-//			//To-Do fix problem ware comment is on the end of the input
-////			return new Token(input.substring(Position, input.indexOf("\n", Position)), TokenType.Comment, Position, LineNumber);
-//		}
 		
 		if (input.startsWith("#asm", Position)) {
 			while (NextIndex < input.length()) {
@@ -127,41 +111,21 @@ MainLoop:
 	}
 	
 	private static TokenType GetCharTokenType(Character input) {
-		switch (input) {
-			case '(':
-				return TokenType.OpeningBracket;
-			case ')':
-				return TokenType.ClosingBracket;
-			
-			case '{':
-				return TokenType.OpeningCurlyBracket;
-			case '}':
-				return TokenType.ClosingCurlyBracket;
-
-//			case '.':
-//				return TokenType.Dot;
-			
-			case '=':
-				return TokenType.Equals;
-			
-			case ';':
-			case '\n':
-				return TokenType.NextCommand;
-			
-			case '+':
-				return TokenType.Plus;
-			case '-':
-				return TokenType.Minus;
-			case '*':
-				return TokenType.Multiply;
-			case '/':
-				return TokenType.Divide;
-			
-			case ',':
-				return TokenType.ListSeparator;
-		}
+		return switch (input) {
+			case '(' -> TokenType.OpeningBracket;
+			case ')' -> TokenType.ClosingBracket;
+			case '{' -> TokenType.OpeningCurlyBracket;
+			case '}' -> TokenType.ClosingCurlyBracket;
+			case '=' -> TokenType.Equals;
+			case ';', '\n' -> TokenType.NextCommand;
+			case '+' -> TokenType.Plus;
+			case '-' -> TokenType.Minus;
+			case '*' -> TokenType.Multiply;
+			case '/' -> TokenType.Divide;
+			case ',' -> TokenType.ListSeparator;
+			default -> TokenType.Unknown;
+		};
 		
-		return TokenType.Unknown;
 	}
 }
 

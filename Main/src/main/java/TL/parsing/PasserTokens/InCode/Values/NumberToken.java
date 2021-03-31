@@ -1,8 +1,5 @@
 package TL.parsing.PasserTokens.InCode.Values;
 
-//import x86.x86RegManger;
-//import x86.x86RegMemOrConst;
-
 import TL.Token;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;
 import TL.parsing.PasserTokens.PasserTokenBasic;
@@ -10,6 +7,7 @@ import TL.parsing.PasserTokens.PasserTokenBasic;
 import java.util.LinkedList;
 
 public class NumberToken extends PasserTokenBasic {
+	@SuppressWarnings({"FieldCanBeLocal", "FieldMayBeFinal"})
 	private String Body;
 	
 	public NumberToken(LinkedList<Token> Tokens, int TokenStartingPosition, int TokenEndingPosition, String Body) {
@@ -35,27 +33,5 @@ public class NumberToken extends PasserTokenBasic {
 			throw new ParsingException("Value is Not a Number", Tokens, StartingPosition, EndingPosition);
 		}
 	}
-
-//	public NumberToken(String Body) throws ParsingException {
-//		super(Body);
-//	}
-
-//	@Override
-//	public x86RegMemOrConst Get_x86RegOrMem() {
-//		return new x86RegMemOrConst(Integer.parseInt(Body));
-//	}
-
-//	@Override
-//	public void ValidateValue(String Body) throws ParsingException {
-//		try {
-//			Integer.parseInt(Body);
-//		} catch (Exception E) {
-//			throw new ParsingException("Can not pares number", "", 0);
-//		}
-//	}
-
-//	@Override
-//	public x86RegMemOrConst GenerateAssemblyCode(AssemblyBlock TheAssemblyBlock, x86RegManger RegManger) {
-//		return new x86RegMemOrConst(Integer.parseInt(Body));
-//	}
+	
 }

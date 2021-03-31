@@ -35,15 +35,10 @@ public class x86RegMemOrConst {
 	
 	@Override
 	public String toString() {
-		switch (this.Type) {
-			case Mem:
-				return "[%d]".formatted(MemAddress);
-			case Const:
-				return "%d".formatted(Const);
-			case Reg:
-				return RegName;
-		}
-		
-		throw new RuntimeException();
+		return switch (this.Type) {
+			case Mem -> "[%d]".formatted(MemAddress);
+			case Const -> "%d".formatted(Const);
+			case Reg -> RegName;
+		};
 	}
 }

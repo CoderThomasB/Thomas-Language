@@ -38,7 +38,8 @@ public class PlusToken extends PasserTokenBasic {
 		try {
 			int PlusPosition;
 			PlusPosition = FindPositionOfASymbol(Tokens, StartingPosition, EndingPosition, getSymbol());
-			PlusToken TheToken = new PlusToken(
+			
+			return new PlusToken(
 					Tokens,
 					StartingPosition,
 					EndingPosition,
@@ -46,8 +47,6 @@ public class PlusToken extends PasserTokenBasic {
 					Statement.ParsInnerBlock(Tokens, PlusPosition + 1, EndingPosition)
 			
 			);
-			
-			return TheToken;
 		} catch (ParsingException e) {
 			throw new MutelyParsingException(e);
 		}

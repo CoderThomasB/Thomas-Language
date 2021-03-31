@@ -1,6 +1,5 @@
 package TL.parsing.PasserTokens.FileRelated;
 
-import TL.ErrorHandling;
 import TL.Token;
 import TL.TokenType;
 import TL.parsing.PasserHelper;

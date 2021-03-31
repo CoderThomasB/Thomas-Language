@@ -3,7 +3,6 @@ package TL.parsing.PasserTokens.FileRelated;
 import TL.Token;
 import TL.TokenizerException;
 import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
-import TL.parsing.PasserTokens.Exceptions.ParsingException;
 import org.junit.Assert;
 import org.junit.Test;
 

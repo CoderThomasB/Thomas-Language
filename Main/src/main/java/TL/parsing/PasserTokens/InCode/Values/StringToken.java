@@ -3,7 +3,6 @@ package TL.parsing.PasserTokens.InCode.Values;
 //import x86.x86RegManger;
 //import x86.x86RegMemOrConst;
 
-import TL.ErrorHandling;
 import TL.Token;
 import TL.TokenType;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;

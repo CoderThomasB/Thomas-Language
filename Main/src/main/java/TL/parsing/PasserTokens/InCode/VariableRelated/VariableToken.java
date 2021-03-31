@@ -2,14 +2,10 @@ package TL.parsing.PasserTokens.InCode.VariableRelated;
 
 //import x86.x86RegManger;
 //import x86.x86RegMemOrConst;
-import TL.ErrorHandling;
+
 import TL.Token;
 import TL.TokenType;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;
-import TL.parsing.PasserTokens.InCode.FunctionCallToken;
-import TL.parsing.PasserTokens.InCode.NoBracketsList;
-import TL.parsing.PasserTokens.InCode.Values.StringToken;
-import TL.parsing.PasserTokens.InCode.Values.Value;
 import TL.parsing.PasserTokens.PasserTokenBasic;
 
 import java.util.LinkedList;

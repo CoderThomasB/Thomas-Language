@@ -13,30 +13,30 @@ import java.util.stream.Collectors;
 
 public abstract class NasmAPI {
 	public static File ParesAssembly(AssemblyBlock TheAssemblyBlock) throws IOException, InterruptedException {
-		File NasmInput = File.createTempFile( "nasmInput", ".txt" );
-		File NasmOutput = File.createTempFile( "NasmOutput", ".out");
+		File NasmInput = File.createTempFile("nasmInput", ".txt");
+		File NasmOutput = File.createTempFile("NasmOutput", ".out");
 		
 		NasmOutput.setExecutable(true);
 		
-		Files.writeString( NasmInput.toPath(), TheAssemblyBlock.toString(), StandardCharsets.US_ASCII );
+		Files.writeString(NasmInput.toPath(), TheAssemblyBlock.toString(), StandardCharsets.US_ASCII);
 		
-		System.out.println( NasmInput.getAbsolutePath() );
-		System.out.println( NasmOutput.getAbsolutePath() );
+		System.out.println(NasmInput.getAbsolutePath());
+		System.out.println(NasmOutput.getAbsolutePath());
 		
-		Process NasmProcess = Runtime.getRuntime( ).exec(MessageFormat.format("nasm {0} -o{1} -f elf32", NasmInput.getAbsolutePath(), NasmOutput.getAbsolutePath()));
-		NasmProcess.waitFor( );
+		Process NasmProcess = Runtime.getRuntime().exec(MessageFormat.format("nasm {0} -o{1} -f elf32", NasmInput.getAbsolutePath(), NasmOutput.getAbsolutePath()));
+		NasmProcess.waitFor();
 		
 		System.out.println(
 				new BufferedReader(
-						new InputStreamReader( NasmProcess.getInputStream( ), StandardCharsets.US_ASCII ) )
-						.lines( )
-						.collect( Collectors.joining( "\n" ) )
+						new InputStreamReader(NasmProcess.getInputStream(), StandardCharsets.US_ASCII))
+						.lines()
+						.collect(Collectors.joining("\n"))
 		);
 		System.err.println(
 				new BufferedReader(
-						new InputStreamReader( NasmProcess.getErrorStream( ), StandardCharsets.US_ASCII ) )
-						.lines( )
-						.collect( Collectors.joining( "\n" ) )
+						new InputStreamReader(NasmProcess.getErrorStream(), StandardCharsets.US_ASCII))
+						.lines()
+						.collect(Collectors.joining("\n"))
 		);
 		
 		return NasmOutput;

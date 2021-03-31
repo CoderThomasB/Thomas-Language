@@ -8,7 +8,6 @@ import TL.parsing.PasserTokens.PasserTokenBasic;
 
 import java.text.MessageFormat;
 import java.util.LinkedList;
-import java.util.Locale;
 
 public class ClassStatement extends PasserTokenBasic {
 	public String Name;

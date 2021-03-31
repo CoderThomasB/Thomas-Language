@@ -8,6 +8,7 @@ public class PasserTokenBasic {
 	public LinkedList<Token> Tokens;
 	public int TokenStartingPosition;
 	public int TokenEndingPosition;
+	
 	public PasserTokenBasic(LinkedList<Token> Tokens,
 	                        int TokenStartingPosition,
 	                        int TokenEndingPosition) {

@@ -1,6 +1,5 @@
 package TL.parsing.PasserTokens.InCode;
 
-import TL.ErrorHandling;
 import TL.Token;
 import TL.TokenType;
 import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
@@ -14,7 +13,7 @@ public class FunctionCallToken extends PasserTokenBasic {
 	public LinkedList<PasserTokenBasic> Inputs;
 	
 	public FunctionCallToken(LinkedList<Token> Tokens, int TokenStartingPosition, int TokenEndingPosition, String FunctionName, LinkedList<PasserTokenBasic> Inputs) {
-		super(Tokens,TokenStartingPosition, TokenEndingPosition);
+		super(Tokens, TokenStartingPosition, TokenEndingPosition);
 		this.FunctionName = FunctionName;
 		this.Inputs = Inputs;
 	}
@@ -46,7 +45,7 @@ public class FunctionCallToken extends PasserTokenBasic {
 	public String toString() {
 		String StringInputs = "";
 		
-		for(Object Input : Inputs){
+		for (Object Input : Inputs) {
 			StringInputs += Input.toString() + ", ";
 		}
 		

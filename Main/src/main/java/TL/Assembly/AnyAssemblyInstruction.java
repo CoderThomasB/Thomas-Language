@@ -1,6 +1,6 @@
 package TL.Assembly;
 
-public class AnyAssemblyInstruction extends AssemblyIntrusion{
+public class AnyAssemblyInstruction extends AssemblyIntrusion {
 	public String Body;
 	
 	public AnyAssemblyInstruction(String Body) {

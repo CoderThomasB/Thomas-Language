@@ -1,8 +1,6 @@
 package TL;
 
 
-import org.junit.Test;
-
 public class TokenizerTest {
 //	@Test
 //	public void TestTokenizer1() throws TokenizerException {

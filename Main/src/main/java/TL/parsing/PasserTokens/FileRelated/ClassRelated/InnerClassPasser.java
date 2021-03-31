@@ -2,8 +2,6 @@ package TL.parsing.PasserTokens.FileRelated.ClassRelated;
 
 import TL.Token;
 import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
-import TL.parsing.PasserTokens.Exceptions.ParsingException;
-import TL.parsing.PasserTokens.FileRelated.ImportStatement;
 import TL.parsing.PasserTokens.PasserTokenBasic;
 
 import java.util.LinkedList;

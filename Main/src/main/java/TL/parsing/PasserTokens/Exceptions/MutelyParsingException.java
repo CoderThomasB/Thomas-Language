@@ -35,21 +35,21 @@ public class MutelyParsingException extends Exception {
 		String SmallestCodeText = null;
 		String message = null;
 		int Line = 0;
-
+		
 		for (ParsingException TheParsingException : ParsingExceptions) {
 			String NewSmallestCodeText = ErrorHandling.CombineTokenBodies(
 					TheParsingException.Tokens,
 					TheParsingException.StartingPosition,
 					TheParsingException.EndingPosition);
 			int NewLineNumber = TheParsingException.Tokens.get(TheParsingException.StartingPosition).LineNumber;
-
+			
 			if (SmallestCodeText == null) {
 				SmallestCodeText = NewSmallestCodeText;
 				message = TheParsingException.getMessage();
 				Line = NewLineNumber;
 				continue;
 			}
-
+			
 			if (NewSmallestCodeText.length() < SmallestCodeText.length()) {
 				SmallestCodeText = NewSmallestCodeText;
 				message = TheParsingException.getMessage();
@@ -57,7 +57,7 @@ public class MutelyParsingException extends Exception {
 				continue;
 			}
 		}
-
+		
 		return MessageFormat.format("\n{0} ''{1}'' on line {2}\n", message, SmallestCodeText, Line);
 	}
 }

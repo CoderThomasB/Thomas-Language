@@ -1,8 +1,5 @@
 package TL;
 
-import javax.swing.text.Position;
-import java.text.MessageFormat;
-
 public class Token {
 	public String Body;
 	public TokenType Type;
@@ -22,7 +19,7 @@ public class Token {
 		this.StringPosition = StringPosition;
 		this.LineNumber = LineNumber;
 	}
-	
+
 //	@Override
 //	public String toString() {
 //		return MessageFormat.format("''{0}''", Body);

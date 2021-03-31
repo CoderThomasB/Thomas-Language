@@ -1,11 +1,8 @@
 package TL.parsing.PasserTokens.InCode;
 
-//import x86.x86Generatable;
-//import x86.x86RegManger;
-import TL.ErrorHandling;
-import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
 import TL.Token;
 import TL.TokenType;
+import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
 import TL.parsing.PasserTokens.Exceptions.ParsingException;
 import TL.parsing.PasserTokens.PasserTokenBasic;
 
@@ -15,6 +12,21 @@ import static TL.parsing.PasserHelper.FindByTypeOrEndOfFile;
 
 public class Scope {
 	public LinkedList<PasserTokenBasic> Commands = new LinkedList<>();
+	
+	public static int FindEndOfScope(LinkedList<Token> Tokens, int StartingPosition) throws ParsingException {
+		int EndingPosition = StartingPosition;
+		
+		while (EndingPosition < Tokens.size()) {
+			if (Tokens.get(EndingPosition).Type == TokenType.ClosingCurlyBracket) {
+				return EndingPosition;
+			}
+			EndingPosition++;
+		}
+		
+		throw new ParsingException("Can not find end of scope.",
+				Tokens, StartingPosition, EndingPosition
+		);
+	}
 	
 	public void ParsInnerBlockWithoutBracket(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) {
 		while (StartingPosition < EndingPosition) {
@@ -26,7 +38,7 @@ public class Scope {
 	}
 	
 	public void ParsInnerBlockWithBracket(LinkedList<Token> Tokens, int StartingPosition) throws ParsingException {
-		if(Tokens.get(StartingPosition).Type != TokenType.OpeningCurlyBracket){
+		if (Tokens.get(StartingPosition).Type != TokenType.OpeningCurlyBracket) {
 			throw new ParsingException("Scope dose not start with OpeningCurlyBracket '{'.", Tokens, StartingPosition, StartingPosition + 1);
 		}
 		ParsInnerBlockWithoutBracket(
@@ -37,12 +49,12 @@ public class Scope {
 	}
 	
 	public void ParsInnerBlockWithBracket(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) throws ParsingException {
-		if(Tokens.get(StartingPosition).Type != TokenType.OpeningCurlyBracket){
+		if (Tokens.get(StartingPosition).Type != TokenType.OpeningCurlyBracket) {
 			throw new ParsingException("Scope dose not start with OpeningCurlyBracket '{'.",
 					Tokens, StartingPosition, StartingPosition + 1
 			);
 		}
-		if(Tokens.get(EndingPosition - 1).Type != TokenType.ClosingCurlyBracket){
+		if (Tokens.get(EndingPosition - 1).Type != TokenType.ClosingCurlyBracket) {
 			throw new ParsingException("Scope dose not start with ClosingBracket '}'.",
 					Tokens, StartingPosition, EndingPosition
 			);
@@ -70,21 +82,6 @@ public class Scope {
 			E.printStackTrace();
 			System.exit(1);
 		}
-	}
-	
-	public static int FindEndOfScope(LinkedList<Token> Tokens, int StartingPosition) throws ParsingException {
-		int EndingPosition = StartingPosition;
-		
-		while (EndingPosition < Tokens.size()) {
-			if (Tokens.get(EndingPosition).Type == TokenType.ClosingCurlyBracket) {
-				return  EndingPosition;
-			}
-			EndingPosition++;
-		}
-		
-		throw new ParsingException("Can not find end of scope.",
-				Tokens, StartingPosition, EndingPosition
-		);
 	}
 	
 	@Override

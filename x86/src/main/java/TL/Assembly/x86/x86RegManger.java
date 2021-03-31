@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class x86RegManger {
 	public LinkedList<String> InUsesRegs = new LinkedList<>();
 	
-	public void DescriedReg(String Reg){
+	public void DescriedReg(String Reg) {
 		InUsesRegs.remove(Reg);
 	}
 	

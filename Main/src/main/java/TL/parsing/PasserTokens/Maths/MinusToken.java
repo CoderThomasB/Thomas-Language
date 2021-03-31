@@ -1,6 +1,7 @@
 package TL.parsing.PasserTokens.Maths;
 
 //import x86.*;
+
 import TL.Token;
 import TL.TokenType;
 import TL.parsing.PasserTokens.Exceptions.MutelyParsingException;
@@ -55,7 +56,7 @@ public class MinusToken extends PasserTokenBasic {
 	public String toString() {
 		return MathsToken.toString('-', Input1, Input2);
 	}
-	
+
 //	@Override
 //	public x86RegMemOrConst GenerateAssemblyCode(AssemblyBlock TheAssemblyBlock, x86RegManger RegManger) {
 //		throw new RuntimeException();

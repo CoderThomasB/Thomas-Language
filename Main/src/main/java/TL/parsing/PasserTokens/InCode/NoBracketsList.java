@@ -12,7 +12,7 @@ public abstract class NoBracketsList {
 		
 		int ParsingPosition = StartingPosition;
 		LinkedList<PasserTokenBasic> NewList = new LinkedList<>();
-		while (ParsingPosition < EndingPosition){
+		while (ParsingPosition < EndingPosition) {
 			int ListSeparatorPosition = FindNextListSeparator(Tokens, ParsingPosition, EndingPosition);
 			NewList.addLast(Statement.ParsInnerBlock(
 					Tokens,
@@ -26,10 +26,10 @@ public abstract class NoBracketsList {
 		return NewList;
 	}
 	
-	public static int FindNextListSeparator(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition){
+	public static int FindNextListSeparator(LinkedList<Token> Tokens, int StartingPosition, int EndingPosition) {
 		int ParsingPosition = StartingPosition;
-		while (ParsingPosition < EndingPosition){
-			if(Tokens.get(ParsingPosition).Type == TokenType.ListSeparator){
+		while (ParsingPosition < EndingPosition) {
+			if (Tokens.get(ParsingPosition).Type == TokenType.ListSeparator) {
 				return ParsingPosition;
 			}
 			ParsingPosition++;

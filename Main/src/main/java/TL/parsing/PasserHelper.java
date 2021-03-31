@@ -2,10 +2,8 @@ package TL.parsing;
 
 import TL.Token;
 import TL.TokenType;
-import TL.parsing.PasserTokens.Exceptions.ParsingException;
 
 import java.util.LinkedList;
-import java.util.function.Function;
 
 public class PasserHelper {
 	public static int FindByTypeOrEndOfFile(LinkedList<Token> Tokens, int StartingPosition, TokenType Type) {

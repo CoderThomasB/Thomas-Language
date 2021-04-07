@@ -59,6 +59,9 @@ public class MutelyParsingException extends Exception {
 			}
 		}
 		
-		return MessageFormat.format("\n{0} ''{1}'' on line {2}\n", message, SmallestCodeText, Line);
+		return MessageFormat.format("{0} ''{1}'' on line {2}",
+				message,
+				SmallestCodeText,
+				Line);
 	}
 }
